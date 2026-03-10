@@ -4,7 +4,7 @@ pipeline {
     parameters {
         choice(name: 'TAG', choices: ['', 'api', 'ui', 'mobile'], description: 'Тег тестов (пусто = все)')
         choice(name: 'BROWSER', choices: ['chrome', 'firefox'], description: 'Браузер для UI')
-        string(name: 'BROWSER_VERSION', defaultValue: '127.0', description: 'Версия браузера в Selenoid')
+        string(name: 'BROWSER_VERSION', defaultValue: '126.0', description: 'Версия браузера в Selenoid')
         choice(name: 'BROWSER_SIZE', choices: ['1920x1080', '1366x768'], description: 'Разрешение')
         string(name: 'THREADS', defaultValue: '2', description: 'Потоки')
         string(name: 'REMOTE_URL', defaultValue: 'http://selenoid:4444/wd/hub', description: 'Selenoid URL')

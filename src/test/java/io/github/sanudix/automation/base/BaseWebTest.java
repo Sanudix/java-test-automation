@@ -10,9 +10,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-import java.util.Map;
 
 @Tag("ui")
 public abstract class BaseWebTest {
@@ -33,15 +30,6 @@ public abstract class BaseWebTest {
 
         if (config.isRemote()) {
             Configuration.remote = config.remoteUrl();
-
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("selenoid:options",
-                    Map.of(
-                            "enableVNC", true,
-                            "enableVideo", true
-                    )
-            );
-            Configuration.browserCapabilities = capabilities;
         }
     }
 

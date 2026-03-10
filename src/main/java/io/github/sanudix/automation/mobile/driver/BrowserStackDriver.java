@@ -36,6 +36,13 @@ public class BrowserStackDriver implements WebDriverProvider {
                 ));
 
         try {
+            System.out.println("=== BS DEBUG ===");
+            System.out.println("bsUser: " + (config.bsUser() != null ? "SET" : "NULL"));
+            System.out.println("bsKey: " + (config.bsKey() != null ? "SET" : "NULL"));
+            System.out.println("bsApp: " + config.bsApp());
+            System.out.println("device: " + config.androidDevice());
+            System.out.println("platform: " + config.platform());
+            System.out.println("================");
             return new AndroidDriver(
                     new URL("https://hub.browserstack.com/wd/hub"), options);
         } catch (MalformedURLException e) {

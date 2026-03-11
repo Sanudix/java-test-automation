@@ -44,7 +44,7 @@ public class BrowserStackDriver implements WebDriverProvider {
             System.out.println("platform: " + config.platform());
             System.out.println("================");
             return new AndroidDriver(
-                    new URL("https://hub.browserstack.com/wd/hub"), options);
+                    new URL("http://hub.browserstack.com/wd/hub"), options);
         } catch (MalformedURLException e) {
             throw new RuntimeException("BrowserStack URL error", e);
         }

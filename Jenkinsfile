@@ -46,25 +46,18 @@ pipeline {
 
         stage('Telegram уведомление') {
             steps {
-                withCredentials([
-                    string(credentialsId: 'TELEGRAM_BOT_TOKEN', variable: 'TG_TOKEN'),
-                    string(credentialsId: 'TELEGRAM_CHAT_ID', variable: 'TG_CHAT')
-                ]) {
-                    sh '''
-                        FILE=allure-notifications-4.6.0.jar
-                        if [ ! -f "$FILE" ]; then
-                            wget -q https://github.com/qa-guru/allure-notifications/releases/download/4.6.0/allure-notifications-4.6.0.jar
-                        fi
-                    '''
-                    sh """
-                        java \
-                            "-DconfigFile=notifications/config.json" \
-                            "-Dnotifications.telegram.token=${TG_TOKEN}" \
-                            "-Dnotifications.telegram.chat=${TG_CHAT}" \
-                            "-Dnotifications.base.reportLink=${BUILD_URL}" \
-                            -jar allure-notifications-4.6.0.jar
-                    """
-                }
+                sh '''
+                    FILE=allure-notifications-4.6.0.jar
+                    if [ ! -f "$FILE" ]; then
+                        wget -q https://github.com/qa-guru/allure-notifications/releases/download/4.6.0/allure-notifications-4.6.0.jar
+                    fi
+                '''
+                sh """
+                    java \
+                        "-DconfigFile=notifications/config.json" \
+                        "-Dnotifications.base.reportLink=${BUILD_URL}" \
+                        -jar allure-notifications-4.6.0.jar
+                """
             }
         }
     }

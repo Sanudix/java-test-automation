@@ -18,6 +18,14 @@ public abstract class BaseMobileTest {
     static void setupAll() {
         MobileConfig config = ConfigProvider.mobileConfig();
 
+        System.out.println("=== MOBILE CONFIG DEBUG ===");
+        System.out.println("platform: [" + config.platform() + "]");
+        System.out.println("env system prop: [" + System.getProperty("env") + "]");
+        System.out.println("bsApp from config: [" + config.bsApp() + "]");
+        System.out.println("androidDevice from config: [" + config.androidDevice() + "]");
+        System.out.println("appPackage from config: [" + config.appPackage() + "]");
+        System.out.println("===========================");
+
         if ("browserstack".equals(config.platform())) {
             Configuration.browser = BrowserStackDriver.class.getName();
         } else {

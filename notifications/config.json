@@ -1,0 +1,18 @@
+{
+  "base": {
+    "logo": "",
+    "project": "Java Test Automation",
+    "environment": "",
+    "comment": "",
+    "reportLink": "",
+    "language": "ru",
+    "allureFolder": "build/allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "",
+    "chat": "",
+    "topic": "",
+    "replyTo": ""
+  }
+}

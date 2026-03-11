@@ -14,7 +14,7 @@ pipeline {
         stage('Запуск тестов') {
             steps {
                 withCredentials([
-                    string(credentialsId: 'REQRES_API_KEY', variable: 'API_KEY'),
+                    string(credentialsId: 'REQRES_API_KEY', variable: 'API_KEY')
                 ]) {
                     sh 'chmod +x gradlew'
                     sh """
@@ -52,15 +52,15 @@ pipeline {
                 ]) {
                     sh '''
                         FILE=allure-notifications-4.6.0.jar
-                        if [ ! -f "\$FILE" ]; then
+                        if [ ! -f "$FILE" ]; then
                             wget -q https://github.com/qa-guru/allure-notifications/releases/download/4.6.0/allure-notifications-4.6.0.jar
                         fi
                     '''
                     sh """
                         java \
                             "-DconfigFile=notifications/config.json" \
-                            "-Dnotifications.telegram.token=\${TG_TOKEN}" \
-                            "-Dnotifications.telegram.chat=\${TG_CHAT}" \
+                            "-Dnotifications.telegram.token=${TG_TOKEN}" \
+                            "-Dnotifications.telegram.chat=${TG_CHAT}" \
                             "-Dnotifications.base.reportLink=${BUILD_URL}" \
                             -jar allure-notifications-4.6.0.jar
                     """

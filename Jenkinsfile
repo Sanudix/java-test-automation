@@ -56,6 +56,7 @@ pipeline {
                     java \
                         "-DconfigFile=notifications/config.json" \
                         "-Dnotifications.base.reportLink=${BUILD_URL}allure/" \
+                        "-Dnotifications.base.comment=UI + API automation tests | Build: #${BUILD_NUMBER}" \
                         -jar allure-notifications-4.6.0.jar
                 """
             }

@@ -2,7 +2,7 @@
   "base": {
     "logo": "",
     "project": "Java Test Automation",
-    "environment": "",
+    "environment": "Ubuntu 24.04.4 LTS | Java 21 | Chrome 145 | Selenide 7.14.0 | Rest Assured 5.4.0 | JUnit 5.10",
     "comment": "",
     "reportLink": "",
     "language": "ru",

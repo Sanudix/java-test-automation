@@ -85,6 +85,11 @@ tasks.withType<Test> {
     jvmArgs("-javaagent:${agent.singleFile}")
     systemProperty("allure.results.directory", "build/allure-results")
 
+    testLogging {
+        showStandardStreams = true
+        events("passed", "failed", "skipped", "standardOut", "standardError")
+    }
+
     // Прокидываем ВСЕ системные свойства в тесты
     // Это позволяет Jenkins передавать -Denv=remote, -DwebBrowserName=firefox и т.д.
     systemProperties(System.getProperties().map { it.key.toString() to it.value.toString() }.toMap())

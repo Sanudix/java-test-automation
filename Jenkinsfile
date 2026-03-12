@@ -46,19 +46,31 @@ pipeline {
 
         stage('Telegram уведомление') {
             steps {
+                writeFile file: 'notifications/config.json', text: """{
+          "base": {
+            "logo": "",
+            "project": "${JOB_BASE_NAME}",
+            "environment": "Ubuntu 24.04.4 LTS | Java 21 | Chrome 145 | Selenide 7.14.0 | Rest Assured 5.4.0 | JUnit 5.10",
+            "comment": "UI + API automation tests | Build #${BUILD_NUMBER}",
+            "reportLink": "${BUILD_URL}allure/",
+            "language": "ru",
+            "allureFolder": "allure-report/",
+            "enableChart": true
+          },
+          "telegram": {
+            "token": "8699034330:AAG6uZ22MDA6FF73y19A73TgPA2L79Z9dW4",
+            "chat": "1308302374",
+            "topic": "",
+            "replyTo": ""
+          }
+        }"""
                 sh '''
                     FILE=allure-notifications-4.6.0.jar
                     if [ ! -f "$FILE" ]; then
                         wget -q https://github.com/qa-guru/allure-notifications/releases/download/4.6.0/allure-notifications-4.6.0.jar
                     fi
                 '''
-                sh """
-                    java \
-                        "-DconfigFile=notifications/config.json" \
-                        "-Dnotifications.base.reportLink=${BUILD_URL}allure/" \
-                        "-Dnotifications.base.comment=UI + API automation tests | Build: #${BUILD_NUMBER}" \
-                        -jar allure-notifications-4.6.0.jar
-                """
+                sh 'java "-DconfigFile=notifications/config.json" -jar allure-notifications-4.6.0.jar'
             }
         }
     }

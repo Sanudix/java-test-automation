@@ -1,4 +1,4 @@
-# Java Test Automation Framework
+# Java Test Automation
 
 <p align="center">
   <img src="https://img.shields.io/badge/Java-17-orange?logo=openjdk&logoColor=white" />

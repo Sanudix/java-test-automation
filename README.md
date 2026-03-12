@@ -6,6 +6,7 @@
   <img src="https://img.shields.io/badge/JUnit5-5.10-25A162?logo=junit5&logoColor=white" />
   <img src="https://img.shields.io/badge/Selenide-7.14.0-D82C7D" />
   <img src="https://img.shields.io/badge/REST--Assured-5.4.0-6DB33F" />
+  <img src="https://img.shields.io/badge/Appium-2.0-662D91?logo=appium&logoColor=white" />
   <img src="https://img.shields.io/badge/Allure-2.32.0-FF8C00?logo=qameta&logoColor=white" />
   <img src="https://img.shields.io/badge/Jenkins-CI-D24939?logo=jenkins&logoColor=white" />
   <img src="https://img.shields.io/badge/Docker-Selenium%20Grid-2496ED?logo=docker&logoColor=white" />
@@ -22,7 +23,7 @@
 |---|---|---|
 | Web UI — Elements ([demoqa.com](https://demoqa.com)) | Selenium Grid в Docker | Smoke, Regression |
 | REST API ([reqres.in](https://reqres.in)) | Прямые HTTP-запросы | CRUD, Contract, Auth |
-| Mobile ([x5club.ru](https://mp.x5club.ru/)) | Локальные тесты на Android | End-to-End |
+| Mobile ([x5club.ru](https://mp.x5club.ru/)) | Appium Server + Android Emulator | End-to-End |
 ---
 
 ## Технологический стек
@@ -37,6 +38,8 @@
   <a href="https://selenide.org"><img width="40" title="Selenide" src="https://avatars.githubusercontent.com/u/43955696?s=200&v=4" /></a>
   &nbsp;&nbsp;
   <a href="https://rest-assured.io"><img width="40" title="REST Assured" src="https://avatars.githubusercontent.com/u/19369327?s=200&v=4" /></a>
+  &nbsp;&nbsp;
+  <a href="https://appium.io"><img width="40" title="Appium" src="https://avatars.githubusercontent.com/u/3221291?s=200&v=4" /></a>
   &nbsp;&nbsp;
   <a href="https://allurereport.org"><img width="40" title="Allure Report" src="https://avatars.githubusercontent.com/u/5879127?s=200&v=4" /></a>
   &nbsp;&nbsp;
@@ -56,6 +59,7 @@
 | `JUnit 5` | Тестовый фреймворк |
 | `Selenide 7.14.0` | UI-автотесты (обёртка над Selenium) |
 | `REST Assured 5.4.0` | API-автотесты |
+| `Appium 2.0` | Мобильные автотесты |
 | `Allure Report` | Формирование отчётов о прогоне |
 | `Jenkins` | CI/CD — запуск тестов |
 | `Docker + Selenium Grid` | Запуск браузеров в контейнерах |
@@ -84,6 +88,10 @@
 | Broken Links - Images | Валидные/битые изображения и ссылки |
 | Dynamic Properties | Ожидание появления, активации кнопки, смена CSS-класса |
 
+
+https://github.com/user-attachments/assets/df917140-41ed-44c7-9a09-5b1e376aaa26
+
+
 ### API — Сервис [reqres.in](https://reqres.in)
 
 > REST API тесты — **59 тестов** по всем CRUD-операциям. С учетом параметризированных - **80 тестов**.
@@ -101,6 +109,33 @@
 | `GET /unknown` | Ресурсы, структура, несуществующий ресурс → 404 |
 | Контрактные тесты | Content-Type, время ответа, JSON-схема |
 
+### Mobile — Приложение x5club.ru
+
+> Один сквозной E2E-тест, проверяющий полный пользовательский сценарий от открытия приложения до оформления заказа.
+
+| Шаг | Действие |
+|---|---|
+| `1` | Запуск приложения на Android-эмуляторе через Appium |
+| `2` | Открытие раздела Каталог через панель навигации |
+| `3` | Ввод в поисковую строку запроса "Молоко" |
+| `4` | Добавление второго товара в корзину без открытия карточки |
+| `5` | Очистка поисковой строки |
+| `6` | Ввод запроса "Творог" |
+| `7` | Пролистывание списка товаров (несколько свайпов) |
+| `8` | Открытие карточки товара |
+| `9` | Добавление 3 единиц товара в корзину |
+| `10` | Шаг назад |
+| `11` | Очистка поисковой строки |
+| `12` | Ввод запроса "Курица" |
+| `13` | Пролистывание списка товаров |
+| `14` | Открытие карточки 4 товара |
+| `15` | Добавление 2 единиц товара в корзину |
+| `16` | Переход в раздел Корзина |
+| `17` | Скролл экрана вниз до кнопки |
+| `18` | Нажатие кнопки Оформить заказ |
+| Контрактные тесты | Content-Type, время ответа, JSON-схема |
+
+https://github.com/user-attachments/assets/b0cdc8f8-cf04-405c-bf18-e8c520a207ec
 ---
 
 ## Запуск тестов из терминала
@@ -121,7 +156,7 @@ gradle clean test
 
 | Параметр | Описание |
 |---|---|
-| `-Dtag` | Тег тестов для запуска (`ui`, `api` или пусто = все) |
+| `-Dtag` | Тег тестов для запуска (`ui`, `api`, `mobile` или пусто = все) |
 | `-Dthreads` | Количество потоков для параллельного запуска |
 | `-Denv` | Имя property-файла конфигурации (`local`, `remote`) |
 | `-DwebBrowserName` | Название браузера (`chrome`, `firefox`) |
@@ -193,6 +228,7 @@ gradle clean test \
 Информация по настройке и использованию бота: [allure-notifications](https://github.com/qa-guru/allure-notifications)
 
 > Сообщение содержит: пай-чарт с результатами, окружение, номер сборки, количество тестов, процент прохождения и ссылку на Allure-отчёт
+<img width="442" height="433" alt="image" src="https://github.com/user-attachments/assets/c436992e-8f6c-45b0-948a-f7e42b4d15f7" />
 
 ---
 
@@ -209,7 +245,7 @@ java-test-automation/
 │   └── test/
 │       ├── java/io/github/sanudix/automation/
 │       │   ├── base/            # Базовые классы тестов (BaseWebTest, BaseApiTest)
-│       │   ├── ui/              # UI-тесты (9 классов, 48 тестов)
+│       │   ├── ui/              # UI-тесты (9 классов, 55 тестов)
 │       │   └── api/             # API-тесты (10 классов, 59 тестов)
 │       └── resources/config/    # Property-файлы (local, remote)
 ├── notifications/               # Конфигурация Telegram-бота

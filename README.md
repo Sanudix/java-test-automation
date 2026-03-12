@@ -8,11 +8,11 @@
   <img src="https://img.shields.io/badge/REST--Assured-5.4.0-6DB33F" />
   <img src="https://img.shields.io/badge/Allure-2.32.0-FF8C00?logo=qameta&logoColor=white" />
   <img src="https://img.shields.io/badge/Jenkins-CI-D24939?logo=jenkins&logoColor=white" />
-  <img src="https://img.shields.io/badge/Docker-Selenoid-2496ED?logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-Selenium%20Grid-2496ED?logo=docker&logoColor=white" />
   <img src="https://img.shields.io/badge/Telegram-Bot-26A5E4?logo=telegram&logoColor=white" />
 </p>
 
-Фреймворк для автоматического тестирования **UI** и **API**, построенный на Java 17. Включает интеграцию с Jenkins, Selenoid (Docker), Allure-отчёты и Telegram-уведомления.
+Фреймворк для автоматического тестирования **UI**, **API** и **MOBILE**, построенный на Java 17. Включает интеграцию с Jenkins, Selenium Grid (Docker), Allure-отчёты и Telegram-уведомления.
 
 ---
 
@@ -20,9 +20,9 @@
 
 | Что тестируем | Стенд | Тип тестов |
 |---|---|---|
-| Web UI — Elements ([demoqa.com](https://demoqa.com)) | Selenoid в Docker | Smoke, Regression |
+| Web UI — Elements ([demoqa.com](https://demoqa.com)) | Selenium Grid в Docker | Smoke, Regression |
 | REST API ([reqres.in](https://reqres.in)) | Прямые HTTP-запросы | CRUD, Contract, Auth |
-
+| Mobile ([x5club.ru](https://mp.x5club.ru/)) | Локальные тесты на Android | End-to-End |
 ---
 
 ## Технологический стек
@@ -44,7 +44,7 @@
   &nbsp;&nbsp;
   <a href="https://www.jenkins.io"><img width="40" title="Jenkins" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" /></a>
   &nbsp;&nbsp;
-  <a href="https://aerokube.com/selenoid"><img width="40" title="Selenoid" src="https://aerokube.com/img/aerokube_logo.svg" /></a>
+  <a href="https://www.selenium.dev/documentation/grid/"><img width="40" title="Selenium Grid" src="https://www.selenium.dev/images/selenium_logo_square_green.png" /></a>
   &nbsp;&nbsp;
   <a href="https://github.com/qa-guru/allure-notifications"><img width="40" title="Telegram Bot" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" /></a>
 </p>
@@ -58,7 +58,7 @@
 | `REST Assured 5.4.0` | API-автотесты |
 | `Allure Report` | Формирование отчётов о прогоне |
 | `Jenkins` | CI/CD — запуск тестов |
-| `Docker + Selenoid` | Запуск браузеров в контейнерах |
+| `Docker + Selenium Grid` | Запуск браузеров в контейнерах |
 | `Owner` | Управление конфигурацией через property-файлы |
 | `Lombok` | Генерация boilerplate-кода (модели) |
 | `AssertJ` | Гибкие assertions |
@@ -70,7 +70,7 @@
 
 ### UI — Web-приложение [demoqa.com](https://demoqa.com)
 
-> Автотесты покрывают раздел **Elements** — 9 страниц, **48 тестов**
+> Автотесты покрывают раздел **Elements** — 9 страниц, **55 тестов**
 
 | Страница | Проверки |
 |---|---|
@@ -86,7 +86,7 @@
 
 ### API — Сервис [reqres.in](https://reqres.in)
 
-> REST API тесты — **59 тестов** по всем CRUD-операциям
+> REST API тесты — **59 тестов** по всем CRUD-операциям. С учетом параметризированных - **80 тестов**.
 
 | Эндпоинт | Проверки |
 |---|---|
@@ -128,7 +128,7 @@ gradle clean test
 | `-DwebBrowserVersion` | Версия браузера |
 | `-DwebBrowserSize` | Разрешение браузера (`1920x1080`, `1366x768`) |
 | `-DwebIsRemote` | Запуск через remote-сервис (`true`/`false`) |
-| `-DwebRemoteUrl` | URL remote-сервиса (Selenoid) |
+| `-DwebRemoteUrl` | URL remote-сервиса (Selenium Grid) |
 | `-DwebIsHeadless` | Запуск в headless-режиме |
 
 ### Пример удалённого запуска
@@ -172,14 +172,17 @@ gradle clean test \
 ### Главная страница отчёта
 
 > Общая статистика: passed / failed / broken / skipped, тренд, длительность
+<img width="2553" height="1294" alt="image" src="https://github.com/user-attachments/assets/2a871a33-a02b-4db8-8436-52d2901b6971" />
 
 ### Группировка тестов по Suites
 
 > Тесты сгруппированы по Epic → Feature → Story с аннотациями `@DisplayName`
+<img width="1370" height="1183" alt="image" src="https://github.com/user-attachments/assets/7e881cde-5760-47cd-a5ea-42fce08effcc" />
 
 ### Детали теста
 
 > Каждый тест содержит: шаги выполнения, Severity, тэги, вложения (скриншоты, логи)
+<img width="1182" height="456" alt="image" src="https://github.com/user-attachments/assets/e5708dd6-d2f0-422b-9feb-dfcc863ebac8" />
 
 ---
 
@@ -189,7 +192,7 @@ gradle clean test \
 
 Информация по настройке и использованию бота: [allure-notifications](https://github.com/qa-guru/allure-notifications)
 
-> Сообщение содержит: пай-чарт с результатами, окружение, количество тестов, процент прохождения и ссылку на Allure-отчёт
+> Сообщение содержит: пай-чарт с результатами, окружение, номер сборки, количество тестов, процент прохождения и ссылку на Allure-отчёт
 
 ---
 

@@ -50,7 +50,7 @@ pipeline {
           "base": {
             "logo": "",
             "project": "${JOB_BASE_NAME}",
-            "environment": "Ubuntu 24.04.4 LTS | Java 21 | Chrome 145 | Selenide 7.14.0 | Rest Assured 5.4.0 | JUnit 5.10",
+            "environment": "Ubuntu 24.04.4 LTS | Java 17 | Chrome 145 | Selenide 7.14.0 | Rest Assured 5.4.0 | JUnit 5.10",
             "comment": "UI + API automation tests | Build #${BUILD_NUMBER}",
             "reportLink": "${BUILD_URL}allure/",
             "language": "ru",

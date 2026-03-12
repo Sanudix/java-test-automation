@@ -133,7 +133,6 @@ https://github.com/user-attachments/assets/df917140-41ed-44c7-9a09-5b1e376aaa26
 | `16` | Переход в раздел Корзина |
 | `17` | Скролл экрана вниз до кнопки |
 | `18` | Нажатие кнопки Оформить заказ |
-| Контрактные тесты | Content-Type, время ответа, JSON-схема |
 ---
 https://github.com/user-attachments/assets/b0cdc8f8-cf04-405c-bf18-e8c520a207ec
 

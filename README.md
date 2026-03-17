@@ -196,6 +196,7 @@ gradle clean test \
 | `BROWSER_SIZE` | Разрешение | `1920x1080`, `1366x768` |
 | `THREADS` | Потоки | `1` по умолчанию |
 | `REMOTE_URL` | Selenium Grid URL | `http://host.docker.internal:4444/wd/hub` |
+<img width="1650" height="927" alt="image" src="https://github.com/user-attachments/assets/ab8ae0b5-7647-445e-acfe-79aa09dd4ec6" />
 
 ---
 
